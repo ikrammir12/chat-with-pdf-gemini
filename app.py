@@ -12,8 +12,18 @@ import tempfile
 
 
 # 1. Load Environment Variables
-load_dotenv()
+import streamlit as st
+import os
+
+# Try to load dotenv (works locally), skip if missing (works on cloud)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass # We are on the cloud, so we don't need this
+
 api_key = os.getenv("GOOGLE_API_KEY")
+
 
 # 2. Page Configuration
 st.set_page_config(page_title="🤖 Chat with PDF (Gemini)", layout="wide")
